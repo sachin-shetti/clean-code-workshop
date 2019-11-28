@@ -4,6 +4,7 @@ public class Rental {
 
     private int daysRented;
     private Movie movie;
+    private Price price;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -19,23 +20,28 @@ public class Rental {
     }
 
     double amount() {
-        double thisAmount = 0;
-        //determine amounts for each line
+        double amount = 0;
         switch (getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                thisAmount += 2;
-                if (getDaysRented() > 2)
-                    thisAmount += (getDaysRented() - 2) * 1.5;
+                price = new RegularMovie(daysRented);
+                amount = price.amount();
                 break;
             case Movie.NEW_RELEASE:
-                thisAmount += getDaysRented() * 3;
+               price = new NewReleaseMovie(daysRented);
+               amount = price.amount();
                 break;
             case Movie.CHILDRENS:
-                thisAmount += 1.5;
-                if (getDaysRented() > 3)
-                    thisAmount += (getDaysRented() - 3) * 1.5;
+                price = new ChildrenMovie(daysRented);
+                amount = price.amount();
                 break;
+            case Movie.SCIFI:
+                price = new SciFiMovie(daysRented);
+                amount = price.amount();
         }
-        return thisAmount;
+        return amount;
+    }
+
+    int frequentRenterPoints() {
+        return price.frequentRenterPoints();
     }
 }

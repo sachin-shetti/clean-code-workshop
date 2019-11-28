@@ -15,7 +15,7 @@ public class HtmlStatement {
                     rental.amount() + "</p>\n";
         }
         result += "<b>Amount owed is " + rentals.totalAmount() + "</b>\n";
-        result += "<b>You earned " + rentals.frequentRenterPoints()
+        result += "<b>You earned " + rentals.totalFrequentRenterPoints()
                 + " frequent renter points</b>";
         return result;
     }

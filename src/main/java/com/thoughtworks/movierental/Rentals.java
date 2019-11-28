@@ -11,14 +11,12 @@ public class Rentals extends  ArrayList<Rental>{
         return totalAmount;
     }
 
-     public int frequentRenterPoints() {
+     public int totalFrequentRenterPoints() {
         int frequentRenterPoints=0;
         for (Rental rental : this) {
-            frequentRenterPoints++;
-            if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-                    &&
-                    rental.getDaysRented() > 1) frequentRenterPoints++;
+            frequentRenterPoints += rental.frequentRenterPoints();
         }
         return frequentRenterPoints;
     }
+
 }

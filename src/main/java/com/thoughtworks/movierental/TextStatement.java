@@ -18,7 +18,7 @@ public class TextStatement {
                     rental.amount() + "\n";
         }
         result += "Amount owed is " + rentals.totalAmount() + "\n";
-        result += "You earned " + rentals.frequentRenterPoints()
+        result += "You earned " + rentals.totalFrequentRenterPoints()
                 + " frequent renter points";
         return result;
     }
