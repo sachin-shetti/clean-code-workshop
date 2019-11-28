@@ -16,7 +16,20 @@ public class CustomerTest {
                 "\tmovie 3\t9.0\n" +
                 "Amount owed is 12.5\n" +
                 "You earned 4 frequent renter points",customer.statement());
+    }
 
+    @Test
+    public void htmlStatement() {
+        Customer customer = new Customer("foo");
+        customer.addRental(new Rental(new Movie("movie 1",Movie.CHILDRENS),1));
+        customer.addRental(new Rental(new Movie("movie 2",Movie.REGULAR),2));
+        customer.addRental(new Rental(new Movie("movie 3",Movie.NEW_RELEASE),3));
+        Assert.assertEquals("<h3>Rental Record for foo</h3>\n" +
+                "<p>\tmovie 1\t1.5</p>\n" +
+                "<p>\tmovie 2\t2.0</p>\n" +
+                "<p>\tmovie 3\t9.0</p>\n" +
+                "<b>Amount owed is 12.5</b>\n" +
+                "<b>You earned 4 frequent renter points</b>",customer.htmlStatement());
     }
 
 }

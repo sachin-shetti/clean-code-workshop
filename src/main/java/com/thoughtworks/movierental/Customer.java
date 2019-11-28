@@ -20,21 +20,37 @@ public class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
         String result = "Rental Record for " + getName() + "\n";
-        int frequentRenterPoints = frequentRenterPoints();
 
         for (Rental rental : rentals) {
             result += "\t" + rental.getMovie().getTitle() + "\t" +
                     rental.amount() + "\n";
-            totalAmount += rental.amount();
         }
-
-        //add footer lines result
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints
+        result += "Amount owed is " + totalAmount(rentals) + "\n";
+        result += "You earned " + frequentRenterPoints()
                 + " frequent renter points";
         return result;
+    }
+
+    public String htmlStatement() {
+        String result = "<h3>Rental Record for " + getName() + "</h3>\n";
+
+        for (Rental rental : rentals) {
+            result += "<p>\t" + rental.getMovie().getTitle() + "\t" +
+                    rental.amount() + "</p>\n";
+        }
+        result += "<b>Amount owed is " + totalAmount(rentals) + "</b>\n";
+        result += "<b>You earned " + frequentRenterPoints()
+                + " frequent renter points</b>";
+        return result;
+    }
+
+    private static double totalAmount(List<Rental> rentals) {
+        double totalAmount = 0;
+        for (Rental rental : rentals) {
+            totalAmount += rental.amount();
+        }
+        return totalAmount;
     }
 
     private int frequentRenterPoints() {
