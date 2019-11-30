@@ -5,9 +5,9 @@ public class TextStatement {
     private String name;
 
 
-    public TextStatement(String name, Rentals rentals) {
-        this.rentals = rentals;
-        this.name = name;
+    public TextStatement(Customer customer) {
+        this.rentals = customer.getRentals();
+        this.name = customer.getName();
     }
 
     public String statement(){

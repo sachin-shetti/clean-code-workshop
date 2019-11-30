@@ -3,9 +3,9 @@ package com.thoughtworks.movierental;
 public class HtmlStatement {
     private String name;
     private Rentals rentals;
-    public HtmlStatement(String name, Rentals rentals) {
-    this.name = name;
-    this.rentals= rentals;
+    public HtmlStatement(Customer customer) {
+    this.name = customer.getName();
+    this.rentals= customer.getRentals();
     }
     public String statement(){
         String result = "<h3>Rental Record for " + name + "</h3>\n";

@@ -16,12 +16,16 @@ public class Customer {
         return name;
     }
 
+    public Rentals getRentals() {
+        return rentals;
+    }
+
     public String statement() {
-         return new TextStatement(name,rentals).statement();
+         return new TextStatement(this).statement();
     }
 
     public String htmlStatement() {
-        return new HtmlStatement(name,rentals).statement();
+        return new HtmlStatement(this).statement();
     }
 
 }
